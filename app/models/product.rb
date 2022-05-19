@@ -16,7 +16,7 @@ class Product < ApplicationRecord
 #-------------------------------------
     #evita a remoção de produtos referenciados por itens de linha:
     
-    has_many :line_itens
+    has_many :line_items
     before_destroy :ensure_not_referenced_by_any_line_item
 
     private
