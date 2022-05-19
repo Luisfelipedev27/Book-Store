@@ -1,0 +1,28 @@
+<%if notice %>
+    <aside id="notice"><%= notice %> </aside>
+<% end %>  
+
+<h1>Your Pragmatic Catalog </h1>
+<ul class="catalog"> 
+    <% cache @products do %> 
+    <%#Em vez do SQL, o rails que executará %>
+   <%@products.each do |product| %>
+    <% cache product do %>
+
+    <li>
+        <%= image_tag(product.image_url)%>
+        <h2><%=product.title%></h2>
+        <p>
+            <%=sanitize(product.description)%>
+            </p>
+<%#Metodo sanitize permite adicionar estilos mais interessantes na  descrição%>
+        <div class="price">
+        <%= number_to_currency(product.price) %>  
+        <%= button_to 'Add to cart', line_items_path(product_id: product), class: 'button' %>
+        <!--Método que formata os números em valor unitário-->
+        </div>  
+    </li>
+            <% end %>
+        <% end %>
+    <% end %>
+    </ul>

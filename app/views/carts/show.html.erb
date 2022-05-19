@@ -1,0 +1,17 @@
+<% if notice %>
+  <aside id="notice"><%= notice %></aside>
+  <%end%>
+
+  <h2 class="cart-title">Your Pragmatic Cart:</h2>
+
+  <ul>
+    <% @cart.line_items.each do |item| %>
+    <div class="items-cart">
+      <div class="fundo">
+        <div class="items-title"><%=item.product.title%> </div>
+      </div>
+        <div><%=image_tag(item.product.image_url)%> </div>
+   
+    </div>
+    <%end%>
+    </ul>
